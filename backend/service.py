@@ -27,14 +27,32 @@ class TaskService:
     # 插入task_insert到tasks
     @staticmethod
     def insert(task_insert):
-        raise NotImplementedError
+        tasks = get_tasks()
+        for item in tasks:
+            if task_insert['id'] == item['id']:
+                return False, 'Insert failed, database already exists "id=%s"' % task_insert['id']
+        tasks.append(task_insert)
+        set_tasks(tasks)
+        return True, tasks
     
     # 更新task_update
     @staticmethod
     def update(task_update):
-        raise NotImplementedError
+        tasks = get_tasks()
+        for item in tasks:
+            if task_update['id'] == item['id']:
+                item['content'] = task_update['content']
+                set_tasks(tasks)
+                return True, tasks
+        return False, 'Update failed, database do not exist "id=%s"' % task_update['id']
 
     # 删除指定id的task
     @staticmethod
     def delete_by_id(id):
-        raise NotImplementedError
+        tasks = get_tasks()
+        for item in tasks:
+            if id == item['id']:
+                tasks.remove(item)
+                set_tasks(tasks)
+                return True, tasks
+        return False, 'Delete failed, database do not exist "id=%s"' % (id)

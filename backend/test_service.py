@@ -21,15 +21,34 @@ def test_query_by_id():
 
 
 def test_insert():
-    raise NotImplementedError
+    task = {
+        "content": "test insert", 
+        "createdTime": "2020-04-19T00:00:00Z", 
+        "id": 2
+    }
+    TaskService.insert(task)
+    tasks =TaskService.query_all()
+    assert 2 == len(tasks)
+    assert 'test insert' == tasks[1]['content']
 
 
 def test_update():
-    raise NotImplementedError
+    task = {
+        "content": "test update", 
+        "createdTime": "2020-04-19T00:00:00Z", 
+        "id": 2
+    }
+    TaskService.update(task)
+    tasks =TaskService.query_all()
+    assert 2 == len(tasks)
+    assert 'test update' == tasks[1]['content']
 
 
 def test_delete_by_id():
-    raise NotImplementedError
+    state, msg = TaskService.delete_by_id(2)
+    assert True == state
+    tasks =TaskService.query_all()
+    assert 1 == len(tasks)
 
 
 if __name__ == '__main__':
