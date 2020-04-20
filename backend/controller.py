@@ -45,19 +45,48 @@ def query_by_id(id=None):
 # 创建一个新的Todo任务
 @app.route('/api/tasks/', methods=['POST'])
 def insert():
-    raise NotImplementedError
+    task_insert = str(request.get_data(), encoding='utf-8')
+    try:
+        task_insert = json.loads(task_insert)
+    except:
+        return 'Please check the validity of the data', 403
+
+    state, msg = TaskService.insert(task_insert)
+    if state is False:
+        return msg, 403
+    else:
+        return jsonify(msg), 200
 
 
 # 更新一个新的Todo任务
 @app.route('/api/tasks/', methods=['PUT'])
 def update():
-    raise NotImplementedError
+    task_update = str(request.get_data(), encoding='utf-8')
+    try:
+        task_update = json.loads(task_update)
+    except:
+        return 'Please check the validity of the data', 403
+
+    state, msg = TaskService.update(task_update)
+    if state is False:
+        return msg, 403
+    else:
+        return jsonify(msg), 200
 
 
 # 删除一个Todo任务
 @app.route('/api/tasks/<id>', methods=['DELETE'])
 def delete_by_id(id=None):
-    raise NotImplementedError
+    try:
+        id = int(id)
+    except:
+        return '"id" must be a integer', 403
+
+    state, msg = TaskService.delete_by_id(id)
+    if state is False:
+        return msg, 404
+    else:
+        return jsonify(msg), 200
 
 
 if __name__ == '__main__':

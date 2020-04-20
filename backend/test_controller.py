@@ -32,13 +32,42 @@ class TestClass(object):
         assert 403 == response.status_code
 
     def test_insert(self):
-        raise NotImplementedError
+        response = self.app.post('/api/tasks/')
+        assert 403 == response.status_code
+
+        response = self.app.post('/api/tasks/1')
+        assert 405 == response.status_code
+
+        data = '{"id":1, "content": "test_insert"}'
+        response = self.app.post('/api/tasks/', data=data)
+        assert 403 == response.status_code
+
+        data = '{"id":2, "content": "test_insert"}'
+        response = self.app.post('/api/tasks/', data=data)
+        assert 200 == response.status_code
 
     def test_update(self):
-        raise NotImplementedError
+        response = self.app.put('/api/tasks/')
+        assert 403 == response.status_code
+
+        response = self.app.put('/api/tasks/1')
+        assert 405 == response.status_code
+
+        data = '{"id":3, "content": "test_update"}'
+        response = self.app.put('/api/tasks/', data=data)
+        assert 403 == response.status_code
+
+        data = '{"id":2, "content": "test_update"}'
+        response = self.app.put('/api/tasks/', data=data)
+        assert 200 == response.status_code
+
 
     def test_delete_by_id(self):
-        raise NotImplementedError
+        response = self.app.delete('/api/tasks/2')
+        assert 200 == response.status_code
+
+        response = self.app.delete('/api/tasks/2')
+        assert 404 == response.status_code
 
 
 if __name__ =="__main__":
