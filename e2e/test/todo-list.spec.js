@@ -12,11 +12,11 @@ describe('Todo List', function () {
     after (async function () {
       await page.close();
     });
-
+    //标题是否正确
     it('should have correct title', async function() {
         expect(await page.title()).to.eql('Todo list');
     });
-
+    //添加新任务
     describe('add task', function () {
         it('should create new task and add to the end', async function() {
             await page.waitFor('.task-input');
@@ -30,7 +30,7 @@ describe('Todo List', function () {
             expect(expectInputContent).to.eql(newTaskContent);
           });
     });
-
+    //编辑任务
     describe('edit task', function () {
         it('should update task', async function() {
             const updatedContent = 'updated content';
@@ -47,7 +47,7 @@ describe('Todo List', function () {
             expect(expectInputContent).to.eql(updatedContent);
           });
     });
-
+    //删除任务
     describe('delete the new task', function () {
         it('should delete the new task in the end of the list', async function() {
             await page.waitFor('.task-input');
