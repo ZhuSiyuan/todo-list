@@ -6,7 +6,10 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1> Todo List </h1>
+    
+    <div className="bj"></div>
+    <h1 align='center'> Todo List </h1>
+    
     <TodoList />
   </React.StrictMode>,
   document.getElementById('root')
