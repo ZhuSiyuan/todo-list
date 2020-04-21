@@ -4,8 +4,7 @@ import { getTodos, addTodo, deleteTodo, updateTodo } from "./api/TodoApi";
 import "./style.css";
 import _ from "lodash";
 
-//useState 的用法是，需要传入一个参数作为状态的初始值，
-//当函数执行后会返回两个值，一个是当前状态的属性，一个是修改状态的方法
+//useState 的用法是，需要传入一个参数作为状态的初始值，当函数执行后会返回两个值,一个是当前状态的属性，一个是修改状态的方法
 const TodoList = () => {
   const [inputValue, setInputValue] = useState("");
   const [list, setList] = useState(null);
@@ -61,10 +60,17 @@ const TodoList = () => {
   if (error) {
     return <div>{error}</div>;
   }
+  const bgGround={
+    display:'inline-block',
+    height: '40px',
+    width:'40px',
+    background: `url(${require("./bk.jpg")})`
+}
 
   return (
     <Fragment>
-      <div>
+      
+      <div align='center'>
         <input
           className="task-input"
           type="text"
@@ -87,6 +93,7 @@ const TodoList = () => {
           />
         ))}
       </ul>
+      
     </Fragment>
   );
 };
