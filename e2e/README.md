@@ -1,27 +1,26 @@
-first step download the project 
+
+## todo-list e2e测试
+
+### 安装：
 
 ```shell
-$git clone https://github.com/ZhuSiyuan/todo-list
+npm install
 ```
 
-you must already start the backend and frontend server before e2e test
-
-next step you need get in /e2e/ to do:
+### 使用：
 
 ```shell
-$npm install
-$npm test
+npm test
 ```
 
-Tests include adding, modifying, and removing tasks
-The test will automatically control the browser and you will see the following output
+工作台应输出：
 
 ```shell
-> todo-e2e@1.0.0 test E:\todo-list-demo\todo-list-demo\e2e
+> todo-e2e@1.0.0 test \path\to\todo-list\e2e
 > mocha test/bootstrap.js --recursive test --timeout 10000
 
   Todo List
-    √ should have correct title
+      √ should have correct title
     add task
       √ should create new task and add to the end (882ms)
     edit task
