@@ -6,6 +6,10 @@
 - npm
 - react
 
+### 安装：
+```git bash
+npm install
+```
 
 ### 使用：
 ```git bash
