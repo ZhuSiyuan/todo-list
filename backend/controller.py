@@ -56,14 +56,11 @@ def query_by_id(id=None):
 # 创建一个新的Todo任务
 @app.route('/api/tasks/', methods=['POST'])
 def insert():
-    print(request.get_data())
     task_insert = str(request.get_data(), encoding='utf-8')
     try:
         task_insert = json.loads(task_insert)
     except:
         return do_response('Please check the validity of the data'), 403
-
-    print(task_insert)
 
     state, msg = TaskService.insert(task_insert)
     if state is False:
